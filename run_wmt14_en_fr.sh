@@ -15,7 +15,7 @@ ARCH="adv_transformer_wmt_en_de"
 MODEL_PATH="/home/nmt-research/repos/deepnmt/admin-data/models/wmt14-en-fr-admin-60-12l"
 LOG="/home/nmt-research/repos/deepnmt/admin-data/logs/wmt14-en-fr-admin-60-12l.log"
 INITF="/home/nmt-research/repos/deepnmt/admin-data/init_files/wmt14-en-fr-admin-60-12l.txt"
-DATA_PATH="/home/nmt-research/repos/deepnmt/admin-data/data/wmt14_en_fr_joined_dict/"
+DATA_PATH="/home/nmt-research/repos/deepnmt/admin-data/data/wmt14_en_de_joined_dict/"
 CKP="/home/nmt-research/repos/deepnmt/admin-data/models/wmt14-en-fr-gadmin-60-12l/checkpoint_last.pt"
 
 # number of encoder layers
