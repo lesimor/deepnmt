@@ -37,32 +37,32 @@ EPOCH=50
 
 # Generate scalars using only one gpu
 
-# CUDA_VISIBLE_DEVICES=0 fairseq-train ${DATA_PATH} \
-#        --arch ${ARCH} --task ${TASK} --adv-opt 0 --share-all-embeddings --optimizer radam \
-#        --adam-betas '(0.9, 0.98)' --clip-norm 0.0 --lr-scheduler inverse_sqrt \
-#        --warmup-init-lr 1e-07 --warmup-updates 8000 --lr ${LR} --min-lr 1e-09 \
-#        --dropout 0.1 --attention-dropout 0.1 --relu-dropout 0.1 --weight-decay 0.0 \
-#        --criterion adv_label_smoothed_cross_entropy --label-smoothing 0.1 \
-#        --max-tokens $MAXTOKENS --update-freq $FRQ \
-#        --fp16 --fp16-scale-window 256 --threshold-loss-scale 0.03125 \
-#        --seed 1111 --restore-file x.pt --max-epoch ${EPOCH} --save-dir ${MODEL_PATH} \
-#        --encoder-layers ${ELAYER} --decoder-layers ${DLAYER} \
-#        --user-dir ${UDIR} --admin-init-type adaptive-profiling \
-#        --admin-init-path ${INITF} \
-#        --log-format simple --log-interval 100 | tee ${LOG}
-
-# multi gpu training
-GPUS=0,1
-CUDA_VISIBLE_DEVICES=$GPUS fairseq-train ${DATA_PATH} \
-       --arch ${ARCH} --task ${TASK} --adv-opt ${AOPT} --share-all-embeddings --optimizer radam \
-       --adam-betas "(0.9,0.98)" --clip-norm 0.0 --lr-scheduler inverse_sqrt \
+CUDA_VISIBLE_DEVICES=0 fairseq-train ${DATA_PATH} \
+       --arch ${ARCH} --task ${TASK} --adv-opt 0 --share-all-embeddings --optimizer radam \
+       --adam-betas '(0.9, 0.98)' --clip-norm 0.0 --lr-scheduler inverse_sqrt \
        --warmup-init-lr 1e-07 --warmup-updates 8000 --lr ${LR} --min-lr 1e-09 \
-       --dropout 0.2 --attention-dropout 0.1 --relu-dropout 0.1 --weight-decay 0.0 \
+       --dropout 0.1 --attention-dropout 0.1 --relu-dropout 0.1 --weight-decay 0.0 \
        --criterion adv_label_smoothed_cross_entropy --label-smoothing 0.1 \
        --max-tokens $MAXTOKENS --update-freq $FRQ \
        --fp16 --fp16-scale-window 256 --threshold-loss-scale 0.03125 \
-       --ddp-backend=no_c10d \
-       --seed 1111 --restore-file ${CKP} --max-epoch ${EPOCH} --save-dir ${MODEL_PATH} \
+       --seed 1111 --restore-file x.pt --max-epoch ${EPOCH} --save-dir ${MODEL_PATH} \
        --encoder-layers ${ELAYER} --decoder-layers ${DLAYER} \
+       --user-dir ${UDIR} --admin-init-type adaptive-profiling \
        --admin-init-path ${INITF} \
-       --user-dir ${UDIR} --admin-init-type adaptive --log-format simple --log-interval 100 | tee ${LOG}
+       --log-format simple --log-interval 100 | tee ${LOG}
+
+# multi gpu training
+# GPUS=0,1
+# CUDA_VISIBLE_DEVICES=$GPUS fairseq-train ${DATA_PATH} \
+#        --arch ${ARCH} --task ${TASK} --adv-opt ${AOPT} --share-all-embeddings --optimizer radam \
+#        --adam-betas "(0.9,0.98)" --clip-norm 0.0 --lr-scheduler inverse_sqrt \
+#        --warmup-init-lr 1e-07 --warmup-updates 8000 --lr ${LR} --min-lr 1e-09 \
+#        --dropout 0.2 --attention-dropout 0.1 --relu-dropout 0.1 --weight-decay 0.0 \
+#        --criterion adv_label_smoothed_cross_entropy --label-smoothing 0.1 \
+#        --max-tokens $MAXTOKENS --update-freq $FRQ \
+#        --fp16 --fp16-scale-window 256 --threshold-loss-scale 0.03125 \
+#        --ddp-backend=no_c10d \
+#        --seed 1111 --restore-file ${CKP} --max-epoch ${EPOCH} --save-dir ${MODEL_PATH} \
+#        --encoder-layers ${ELAYER} --decoder-layers ${DLAYER} \
+#        --admin-init-path ${INITF} \
+#        --user-dir ${UDIR} --admin-init-type adaptive --log-format simple --log-interval 100 | tee ${LOG}
