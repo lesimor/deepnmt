@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 GPUS=0
-DATA_PATH="/mnt/duck/data/admin-data/data/wmt14_en_fr_joined_dict/"
+DATA_PATH="/home/nmt-research/repos/deepnmt/admin-data/data/wmt14_en_de_joined_dict/"
 
 echo "Model path" $SAVEDIR
 
