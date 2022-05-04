@@ -1,4 +1,4 @@
-MAXTOKENS=3200
+MAXTOKENS=2500
 FRQ=8
 
 # users' code dir
